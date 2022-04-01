@@ -23,9 +23,6 @@ def deploy():
 
     set_tx = administration.setAuctionMarketContractAddress(auction_market.address, {"from": admin})
     set_tx.wait(1)
-
-    print(set_tx.info())
-
     
 def main():
     deploy()
