@@ -77,7 +77,7 @@ Please install or have installed the following:
    cd MarketPlace-Dapp-V2
    ```
 3. Install Ganache:
-   Ganache is a local blockchain that run on your machine, it's used during development stages because it allows quick smart contract testing and avoids all real         Testnets problems. 
+   Ganache is a local blockchain that run on your machine, it's used during development stages because it allows quick smart contract testing and avoids all real Testnets problems. 
    You can install ganache from this link : https://trufflesuite.com/ganache/
    
    Next, you need to setup the ganache network with brownie :
@@ -109,6 +109,45 @@ Please install or have installed the following:
 <!-- Working EXAMPLES -->
 ## How it Works
 
+### Main Market
+
+This is the core of the old version [marketplace V1](https://github.com/Aymen1001/MarketPlace-dapp) and it's made for single items purchase , User can add a product by providing the product name, description, price in $ and image.
+
+![Capture d’écran 2022-03-03 à 22 36 53](https://user-images.githubusercontent.com/83681204/156660595-9432f950-941d-465f-ad69-bb0edaad32b7.png)
+
+The platform ensures a good interaction between the seller and the buyer by deviding the purchase process (product state) into 4 steps:
+  <ul>
+    <li><b>In Sale:</b> The first step when a seller list it's product on the market </li>
+    <li><b>Pending:</b> When a product is bought the amount paid is locked in the smart contract and buyer waits for seller to sent the product </li>
+    <li><b>Sent:</b> The seller sends the product and waits for the buyer confirmation</li>
+    <li><b>Sold:</b> The buyer confirms the recieval and the funds are transfered to the seller </li> 
+  </ul>
+ 
+All this steps can be performed on the product page: 
+
+<b>Point of view: seller(left), Buyer(right) </b>
+
+<p align="center">
+  <img alt="Light" src="https://user-images.githubusercontent.com/83681204/156660145-aacb1ff4-2ba3-44d5-8bb9-87c927571b6b.png" width="45%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/156660202-5bbb40db-ccf6-4a9f-88eb-3b407eca0211.png" width="45%">
+</p>
+
+
+### The Store
+
+The dapp enables sellers to create their own order based stores, They can thus grow their brand and gain in popularity. 
+
+![Capture d’écran 2022-04-02 à 00 51 30](https://user-images.githubusercontent.com/83681204/161355217-4bebbe79-9a28-454d-8249-6db70213ce22.png)
+
+
+Each seller willing to create a new store must provide a name and the store logo:
+
+<p align="center">
+  <img alt="Light" src="https://user-images.githubusercontent.com/83681204/161355079-85eed1ea-3e79-4dc3-8bb3-72e92979f358.png" width="45%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161355090-cced48d8-d6f0-444e-a3c1-af8f62c9d698.png" width="45%">
+</p>
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
