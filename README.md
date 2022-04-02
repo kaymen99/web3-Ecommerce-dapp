@@ -133,26 +133,34 @@ The platform ensures a good interaction between the seller and the buyer by devi
  
 All this steps can be performed on the product page: 
 
-<b>Point of view: seller(left), Buyer(right) </b>
 
-<p align="center">
-  <img alt="Light" src="https://user-images.githubusercontent.com/83681204/156660145-aacb1ff4-2ba3-44d5-8bb9-87c927571b6b.png" width="45%">
-&nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/156660202-5bbb40db-ccf6-4a9f-88eb-3b407eca0211.png" width="45%">
-</p>
+<table>
+  <tr>
+     <td style="text-align:center;">Seller Point of view </td>
+     <td style="text-align:center;">Buyer Point of view </td>
+  </tr>
+  <tr>
+    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/156660145-aacb1ff4-2ba3-44d5-8bb9-87c927571b6b.png"></td>
+    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/156660202-5bbb40db-ccf6-4a9f-88eb-3b407eca0211.png"></td>
+  </tr>
+ </table>
 
 
 ### The Store
 
 The dapp enables sellers to create their own order based stores, They can add limited and unlimited quantity products. 
 
-Store Page (left) / Seller Dashboard (right)
 
-<p align="center">
-  <img alt="Light" src="https://user-images.githubusercontent.com/83681204/161355217-4bebbe79-9a28-454d-8249-6db70213ce22.png" width="45%">
-&nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161355756-faf21a74-6a5e-4cb3-af3e-01400bd273ff.png" width="45%">
-</p>
+<table>
+  <tr>
+     <td style="text-align:center;"> Store Page </td>
+     <td style="text-align:center;"> Seller Dashboard</td>
+  </tr>
+  <tr>
+    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/161355217-4bebbe79-9a28-454d-8249-6db70213ce22.png"></td>
+    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/161355756-faf21a74-6a5e-4cb3-af3e-01400bd273ff.png"></td>
+  </tr>
+ </table>
 
 Each seller willing to create a new store must provide a name and the store logo:
 
@@ -175,12 +183,12 @@ When an order is created it goes through 3 main states:
 User can start an auction for any type of products by providing name, description, starting price, auction duration (in hours), item image.
 Bidders can offer an initial bid and outbid if necessary without having to withdraw their fund on each bid, the highest bidder will be determined after the end of the auction clock
 
-<p align="center">
-  <img alt="Light" src="https://user-images.githubusercontent.com/83681204/161357638-e10c63c8-3f10-44ad-a8a3-34d492a6d2c0.png" width="45%">
-&nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161357676-ebe2be3c-9922-4d1d-9d18-6e4291536d0f.png" width="45%">
-</p>
-
+<table>
+  <tr>
+    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/161357638-e10c63c8-3f10-44ad-a8a3-34d492a6d2c0.png"></td>
+    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/161357676-ebe2be3c-9922-4d1d-9d18-6e4291536d0f.png"></td>
+  </tr>
+ </table>
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
