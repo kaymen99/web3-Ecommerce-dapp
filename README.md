@@ -189,7 +189,7 @@ Bidders can offer an initial bid and outbid if necessary without having to withd
 
 ### Contracts
 
-   
+will be added soon
 
 <p align="right">(<a href="#top">back to top</a>)</p>
     
