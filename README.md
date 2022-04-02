@@ -171,6 +171,14 @@ When an order is created it goes through 3 main states:
 
 ### Auction Market
 
+User can start an auction for any type of products by providing name, description, starting price, auction duration (in hours), item image.
+Bidders can offer an initial bid and outbid if necessary without having to withdraw their fund on each bid, the highest bidder will be determined after the end of the auction clock
+
+<p align="center">
+  <img alt="Light" src="https://user-images.githubusercontent.com/83681204/161357638-e10c63c8-3f10-44ad-a8a3-34d492a6d2c0.png" width="45%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161357676-ebe2be3c-9922-4d1d-9d18-6e4291536d0f.png" width="45%">
+</p>
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
