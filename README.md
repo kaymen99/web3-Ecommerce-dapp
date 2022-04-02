@@ -3,11 +3,12 @@
 <!-- ABOUT THE PROJECT -->
 ## Decentralized Marketplace Dapp V2
 
-<p align="center">
-  <img alt="Light" src="https://user-images.githubusercontent.com/83681204/161353432-f63bd35b-14f6-4f49-8b53-a19599272af8.png" width="50%">
-&nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161353476-c84cc1b8-dce9-4d02-afd6-e4b24d325528.png" width="50%">
-</p>
+<table>
+  <tr>
+    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/161353432-f63bd35b-14f6-4f49-8b53-a19599272af8.png"></td>
+    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/161353476-c84cc1b8-dce9-4d02-afd6-e4b24d325528.png"></td>
+  </tr>
+ </table>
 
 This is my second implementation of a decentralized marketplace built on top of EVM Blockchains (Ethereum, Polygon,...), The first dapp allowed users to only buy and sell single items (without quantity). But this one is much more developed and have a lot of features, It enables the user to create it's own store with a costumized brand and to sell products with limited/unlimited quantity, it gives buyers the possibility to review the bought products. I also introduced an Auction market just like all the NFT marketplaces (OpenSea,...) however it's more generalized and accept all variety of products. 
 
