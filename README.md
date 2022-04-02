@@ -31,7 +31,14 @@ This is my second implementation of a decentralized marketplace built on top of 
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#how-it-works">How it Works</a></li>
+    <li>
+      <a href="#how-it-works">How it Works</a>
+      <ul>
+        <li><a href="#main-market">Main Market</a></li>
+        <li><a href="#the-store">The Store</a></li>
+        <li><a href="#auction-market">Auction Market</a></li>
+      </ul>
+    </li>
     <li>
       <a href="#usage">How to Use</a>
       <ul>
@@ -136,18 +143,34 @@ All this steps can be performed on the product page:
 
 ### The Store
 
-The dapp enables sellers to create their own order based stores, They can thus grow their brand and gain in popularity. 
+The dapp enables sellers to create their own order based stores, They can add limited and unlimited quantity products. 
 
-![Capture d’écran 2022-04-02 à 00 51 30](https://user-images.githubusercontent.com/83681204/161355217-4bebbe79-9a28-454d-8249-6db70213ce22.png)
+Store Page (left) / Seller Dashboard (right)
 
+<p align="center">
+  <img alt="Light" src="https://user-images.githubusercontent.com/83681204/161355217-4bebbe79-9a28-454d-8249-6db70213ce22.png" width="45%">
+&nbsp; &nbsp; &nbsp; &nbsp;
+  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161355756-faf21a74-6a5e-4cb3-af3e-01400bd273ff.png" width="45%">
+</p>
 
 Each seller willing to create a new store must provide a name and the store logo:
 
 <p align="center">
-  <img alt="Light" src="https://user-images.githubusercontent.com/83681204/161355079-85eed1ea-3e79-4dc3-8bb3-72e92979f358.png" width="45%">
-&nbsp; &nbsp; &nbsp; &nbsp;
-  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161355090-cced48d8-d6f0-444e-a3c1-af8f62c9d698.png" width="45%">
+  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161355090-cced48d8-d6f0-444e-a3c1-af8f62c9d698.png" width="100%">
 </p>
+
+On the product page you can find all details regarding the product(seller, quantity, price,...) and the reviews posted by previous buyers,
+When an order is created it goes through 3 main states: 
+<ul>
+  <li><b>PENDING:</b> just created and waiting for seller acceptance</li>
+  <li><b>SENT:</b> product sent and waiting for buyer recieval confirmation</li>
+  <li><b>COMPLETED:</b> The order is complete so seller recieve payment and buyer can leave a review </li>    
+</ul>
+
+![store-product-page](https://user-images.githubusercontent.com/83681204/161357125-2a1cb716-be24-4382-8708-23d930afc983.png)
+
+### Auction Market
+
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
