@@ -43,7 +43,6 @@ This is my second implementation of a decentralized marketplace built on top of 
     <li>
       <a href="#usage">How to Use</a>
       <ul>
-        <li><a href="#contracts">Contracts</a></li>
         <li><a href="#scripts">Scripts</a></li>
         <li><a href="#testing">Testing</a></li>
         <li><a href="#front-end">Front End</a></li>
@@ -196,11 +195,6 @@ Bidders can offer an initial bid and outbid if necessary without having to withd
 <!-- USAGE EXAMPLES -->
 ## How to Use
 
-### Contracts
-
-will be added soon
-
-<p align="right">(<a href="#top">back to top</a>)</p>
     
 ### Scripts
 
