@@ -90,7 +90,7 @@ Please install or have installed the following:
    
    Next, you need to setup the ganache network with brownie :
    ```sh
-   brownie networks add Ethereum ganache-local cmd=ganache-cli host=http://127.0.0.1 accounts=10 mnemonic=brownie port=8545 chainid=5777
+   brownie networks add Ethereum ganache-local host=http://127.0.0.1:7545 chainid=5777
    ```
 4. Set your environment variables
    To be able to deploy to real testnets you need to add your PRIVATE_KEY (You can find your PRIVATE_KEY from your ethereum wallet like metamask) to the .env file:
