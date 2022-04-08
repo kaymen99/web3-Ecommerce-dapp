@@ -217,7 +217,7 @@ def test_admin_modifier():
 
     # check that only admin can change the fees
     with brownie.reverts("only admin call"):
-        change_tx = market.changeSellFee(10, {"from": random_user})
+        change_tx = market.changeFee(10, {"from": random_user})
         change_tx.wait(1)
 
 def test_not_seller():
@@ -278,4 +278,6 @@ def deploy():
     set_tx.wait(1)
 
     return admin, market       
+
+  
 
