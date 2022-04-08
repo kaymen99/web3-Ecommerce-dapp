@@ -29,13 +29,15 @@ def deploy_store_factory():
     return admin, store_factory    
 
 def create_store(store_factory , owner):
+
+    STORE_META_DATA = "store test meta data"
     # Get store creation fee in USD and convert it to ETH
     create_store_fee =  store_factory._convertUSDToETH(store_factory.createStoreFee())
     create_store_fee.wait(1)
 
     create_store_fee = create_store_fee.return_value
 
-    create_tx = store_factory.createStore({"from": owner, "value": create_store_fee})
+    create_tx = store_factory.createStore(STORE_META_DATA, {"from": owner, "value": create_store_fee})
     create_tx.wait(1)
 
     market_stores = store_factory.getAllStores()
