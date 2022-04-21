@@ -3,14 +3,17 @@
 <!-- ABOUT THE PROJECT -->
 ## Decentralized Marketplace Dapp V2
 
-<table>
-  <tr>
-    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/161353432-f63bd35b-14f6-4f49-8b53-a19599272af8.png"></td>
-    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/161353476-c84cc1b8-dce9-4d02-afd6-e4b24d325528.png"></td>
-  </tr>
- </table>
+ 
+ <p align="center">
+  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161353432-f63bd35b-14f6-4f49-8b53-a19599272af8.png" width="100%">
+</p>
+
 
 This is my second implementation of a decentralized marketplace built on top of EVM compatible Blockchains (Ethereum, Polygon,...), The first dapp allowed users to only buy and sell single items (without quantity). But this one is much more developed and have a lot of features, It enables the user to create it's own store with a costumized brand and to sell products with limited/unlimited quantity, it gives buyers the possibility to review the bought products. I also introduced an Auction market just like all the NFT marketplaces (OpenSea,...) however it's more generalized and accept all variety of products. 
+
+<p align="center">
+  <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161353476-c84cc1b8-dce9-4d02-afd6-e4b24d325528.png" width="100%">
+</p>
 
 ### Built With
 
@@ -160,16 +163,6 @@ Seller Dashboard:
 
 <img src="https://user-images.githubusercontent.com/83681204/161355756-faf21a74-6a5e-4cb3-af3e-01400bd273ff.png">
 
-<table>
-  <tr>
-     <td style="text-align:center;"> Store Page </td>
-     <td style="text-align:center;"> Seller Dashboard</td>
-  </tr>
-  <tr>
-    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/161355217-4bebbe79-9a28-454d-8249-6db70213ce22.png"></td>
-    <td valign="top"><img src="https://user-images.githubusercontent.com/83681204/161355756-faf21a74-6a5e-4cb3-af3e-01400bd273ff.png"></td>
-  </tr>
- </table>
 
 Each seller willing to create a new store must provide a name and the store logo:
 
