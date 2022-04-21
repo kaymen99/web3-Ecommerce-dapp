@@ -150,6 +150,15 @@ All this steps can be performed on the product page:
 
 The dapp enables sellers to create their own order based stores, They can add limited and unlimited quantity products. 
 
+Store Page:
+
+<img src="https://user-images.githubusercontent.com/83681204/161355217-4bebbe79-9a28-454d-8249-6db70213ce22.png">
+
+<br/>
+
+Seller Dashboard:
+
+<img src="https://user-images.githubusercontent.com/83681204/161355756-faf21a74-6a5e-4cb3-af3e-01400bd273ff.png">
 
 <table>
   <tr>
