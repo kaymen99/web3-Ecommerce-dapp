@@ -96,21 +96,12 @@ Please install or have installed the following:
    brownie networks add Ethereum ganache-local host=http://127.0.0.1:7545 chainid=5777
    ```
 4. Set your environment variables
-   To be able to deploy to real testnets you need to add your PRIVATE_KEY (You can find your PRIVATE_KEY from your ethereum wallet like metamask) to the .env file:
+   To be able to deploy to real testnets you need to add your PRIVATE_KEY (You can find your PRIVATE_KEY from your ethereum wallet like metamask) and the infura project Id (just create an infura account it's free) to the .env file:
    ```
    PRIVATE_KEY=<PRIVATE_KEY>
+   WEB3_INFURA_PROJECT_ID=<< YOUR INFURA PROJECT ID >>
    ```
    You can choose to use ethereum testnets like rinkeby, Kovan or any other evm compatible testnet.
-   
-   To setup the ethereum  Testnet with brownie you'll need an Alchemy account (it's free) and just create a new app on the ethereum  network
-   
-   ![Capture d’écran 2022-01-25 à 00 14 44](https://user-images.githubusercontent.com/83681204/150881084-9b60349e-def0-44d2-bbb2-8ca7e27157c7.png)
-  
-   After creating the app copy the URL from -view key- and run this: 
-   ```sh
-   brownie networks add Ethereum <network name> cmd=ganache-cli host=<Copied URL> accounts=10 mnemonic=brownie port=8545 chainid=<network chainId>
-   ```
-   
    You'll also need some eth in the testnet. You can get it into your wallet by using a public faucet. 
 
 
