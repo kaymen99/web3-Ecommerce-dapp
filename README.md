@@ -44,7 +44,7 @@ This is my second implementation of a decentralized marketplace built on top of 
       </ul>
     </li>
     <li>
-      <a href="#usage">How to Use</a>
+      <a href="#how-to-use">How to Use</a>
       <ul>
         <li><a href="#scripts">Scripts</a></li>
         <li><a href="#testing">Testing</a></li>
