@@ -65,6 +65,7 @@ function Account() {
             setInjectedProvider(null)
         }
         dispatch(disconnect())
+        setShow(false)
         setTimeout(() => {
             navigate("/");
         }, 1);
