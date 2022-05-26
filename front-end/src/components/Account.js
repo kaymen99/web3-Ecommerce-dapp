@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { updateAccountData, disconnect } from "../features/blockchain"
-import { ethers, utils } from "ethers"
+import { ethers, utils } from "ethers";
+import { Modal } from "react-bootstrap"
 import { Button, makeStyles, Box } from "@material-ui/core"
 import { useNavigate } from "react-router-dom";
 import Web3Modal from "web3modal"
@@ -31,6 +32,10 @@ function Account() {
     const data = useSelector((state) => state.blockchain.value)
 
     const [injectedProvider, setInjectedProvider] = useState();
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
 
     async function fetchAccountData() {
@@ -86,17 +91,8 @@ function Account() {
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={Disconnect}
+                        onClick={handleShow}
                     >
-                        <Box style={{ marginRight: '10px' }} color="#fff" sx={{
-                            backgroundColor: 'primary.dark',
-                            '&:hover': {
-                                backgroundColor: 'primary.main',
-                                opacity: [0.9, 0.8, 0.7],
-                            },
-                        }} >
-                            {data.balance && parseFloat(data.balance).toFixed(4) + ""}
-                        </Box>
                         {data.account &&
                             `${data.account.slice(0, 6)}...${data.account.slice(
                                 data.account.length - 4,
@@ -104,6 +100,22 @@ function Account() {
                             )}`}
                         <Identicon account={data.account} />
                     </Button>
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>User</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <p>Account: {data.account}</p>
+                            <p>Balance: {data.balance && parseFloat(data.balance).toFixed(4)} ETH</p>
+                            <p>Network: {data.network}</p>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="contained" color="secondary" onClick={Disconnect}>
+                                Disconnect
+                            </Button>
+                            <a className="btn btn-primary" href={"/my-products"} role="button">Dashboard</a>
+                        </Modal.Footer>
+                    </Modal>
                 </>
             ) : (
                 <Button
@@ -119,7 +131,6 @@ function Account() {
 }
 
 export default Account
-
 
 
 
