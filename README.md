@@ -88,7 +88,7 @@ Please install or have installed the following:
    
 3. Clone the repo:
    ```sh
-   git clone https://github.com/Aymen1001/MarketPlace-Dapp-V2.git
+   git clone https://github.com/kaymen99/MarketPlace-Dapp-V2.git
    cd MarketPlace-Dapp-V2
    ```
 3. Install Ganache:
