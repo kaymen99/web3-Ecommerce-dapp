@@ -108,7 +108,11 @@ Please install or have installed the following:
    You can choose to use ethereum testnets like rinkeby, Kovan or any other evm compatible testnet.
    You'll also need some eth in the testnet. You can get it into your wallet by using a public faucet. 
 
-
+5. As infura recently removed its free IPFS gateway i used `web3.storage` api for storing data into IPFS, this api is as simple as infura it requires the creation of a free account and a new api token which you can do [here](https://web3.storage), when you finish add your api token into the `src/utils/ipfsStorage.js` file:
+   ```js
+    const web3storage_key = "YOUR-WEB3.STORAGE-API-TOKEN";
+   ```
+   
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
