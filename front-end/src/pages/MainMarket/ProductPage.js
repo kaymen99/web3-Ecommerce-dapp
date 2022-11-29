@@ -1,334 +1,222 @@
 import "bootstrap/dist/css/bootstrap.css";
-import React, { useState, useEffect } from "react";
-import { Table, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { ethers, utils } from "ethers";
-import { useDispatch, useSelector } from "react-redux";
-import { updateAccountData } from "../../features/blockchain";
-import { CircularProgress } from "@material-ui/core";
-import { useParams } from "react-router-dom";
+import { makeStyles, CircularProgress } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import {
+  Card,
+  Container,
+  Row,
+  Col,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
 
 import MarketContract from "../../artifacts/contracts/Market.json";
+import StoreFactoryContract from "../../artifacts/contracts/StoreFactory.json";
+import StoreContract from "../../artifacts/contracts/Store.json";
 import contractsAddress from "../../artifacts/deployments/map.json";
+import networks from "../../utils/networksMap.json";
+
+const Marketaddress = contractsAddress["5777"]["Market"][0];
+const factoryAddress = contractsAddress["5777"]["StoreFactory"][0];
 
 const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-const Marketaddress = contractsAddress["5777"]["Market"][0];
 
-const statusMap = { 1: "IN SALE", 2: "PENDING", 3: "SENT", 4: "SOLD" };
+const useStyles = makeStyles((theme) => ({
+  Container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: theme.spacing(2),
+  },
+}));
 
-function ProductPage() {
-  const { id } = useParams();
-  const dispatch = useDispatch();
+function MarketPage() {
+  const classes = useStyles();
+
   const data = useSelector((state) => state.blockchain.value);
-
-  const [productState, setProductState] = useState({
-    seller: "",
-    name: "",
-    description: "",
-    image: "",
-    price: 0,
-    price_eth: 0,
-    buy_price_in_ETH: 0,
-    buyer: "",
-    status: "",
-  });
-
+  const [allProducts, setAllProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState("");
 
-  const updateBalance = async () => {
+  async function loadProducts() {
     const signer = provider.getSigner();
-    const balance = await signer.getBalance();
-    dispatch(
-      updateAccountData({ ...data, balance: utils.formatUnits(balance) })
-    );
-  };
-
-  const productDetails = async (product_id) => {
-    if (product_id !== undefined) {
-      const market = new ethers.Contract(
-        Marketaddress,
-        MarketContract.abi,
-        provider
-      );
-      const details = await market.callStatic.products(product_id);
-
-      const imgUrl = details[4].replace(
-        "ipfs://",
-        "https://gateway.pinata.cloud/ipfs/"
-      );
-
-      convertPrice(utils.formatUnits(details[5])).then((res) => {
-        setProductState({
-          ...productState,
-          seller: details[1],
-          name: details[2],
-          description: details[3],
-          image: imgUrl,
-          price: utils.formatUnits(details[5]),
-          price_eth: utils.formatUnits(res),
-          buy_price_in_ETH: utils.formatUnits(details[6]),
-          buyer: details[7],
-          status: statusMap[details[8]],
-        });
-      });
-    }
-  };
-
-  const purchase = async (product_id) => {
-    try {
-      if (product_id !== undefined) {
-        setLoading(true);
-        const price_in_eth = productState.price_eth;
-        const signer = provider.getSigner();
-        const market = new ethers.Contract(
-          Marketaddress,
-          MarketContract.abi,
-          signer
-        );
-
-        const purchase_tx = await market.purchase(product_id, {
-          value: utils.parseEther(price_in_eth, "ether"),
-        });
-        await purchase_tx.wait();
-
-        setLoading(false);
-        productDetails(product_id);
-        updateBalance();
-      }
-    } catch (err) {
-      window.alert("An error has occured, Please try again");
-      setLoading(false);
-    }
-  };
-
-  const send = async (product_id) => {
-    try {
-      if (product_id !== undefined) {
-        setLoading(true);
-        const signer = provider.getSigner();
-        const market = new ethers.Contract(
-          Marketaddress,
-          MarketContract.abi,
-          signer
-        );
-        const send_tx = await market.sendProduct(product_id);
-        await send_tx.wait();
-
-        setLoading(false);
-        productDetails(product_id);
-        updateBalance();
-      }
-    } catch (err) {
-      window.alert("An error has occured, Please try again");
-      setLoading(false);
-    }
-  };
-  const confirm = async (product_id) => {
-    try {
-      if (product_id !== undefined) {
-        setLoading(true);
-        const signer = provider.getSigner();
-        const market = new ethers.Contract(
-          Marketaddress,
-          MarketContract.abi,
-          signer
-        );
-        const confirm_tx = await market.confirmRecieved(product_id);
-        await confirm_tx.wait();
-
-        setLoading(false);
-        productDetails(product_id);
-        updateBalance();
-      }
-    } catch (err) {
-      window.alert("An error has occured, Please try again");
-      setLoading(false);
-    }
-  };
-
-  const cancel = async (product_id) => {
-    try {
-      if (product_id !== undefined) {
-        setLoading(true);
-        const signer = provider.getSigner();
-        const market = new ethers.Contract(
-          Marketaddress,
-          MarketContract.abi,
-          signer
-        );
-        const cancel_tx = await market.cancelPurchase(product_id);
-        await cancel_tx.wait();
-
-        setLoading(false);
-        productDetails(product_id);
-        updateBalance();
-      }
-    } catch (err) {
-      window.alert("An error has occured, Please try again");
-      setLoading(false);
-    }
-  };
-
-  async function convertPrice(amount) {
     const market = new ethers.Contract(
       Marketaddress,
       MarketContract.abi,
-      provider
+      signer
     );
-    const price_in_eth = await market.callStatic._convertUSDToETH(
-      utils.parseEther(amount, "ether")
+    const products = await market.getAllProducts();
+
+    const inSaleProducts = products.filter((p) => p[8] === 1);
+
+    const _marketProducts = inSaleProducts.map((p) => {
+      const imgUrl = p[4].replace(
+        "ipfs://",
+        "https://gateway.pinata.cloud/ipfs/"
+      );
+      let item = {
+        productId: Number(p[0]),
+        name: p[2],
+        image: imgUrl,
+        price: utils.formatUnits(p[5].toString(), "ether"),
+        date: Number(p[9]),
+      };
+      return item;
+    });
+
+    const factory = new ethers.Contract(
+      factoryAddress,
+      StoreFactoryContract.abi,
+      signer
     );
-    return price_in_eth;
+    const marketStores = await factory.getAllStores();
+
+    let _allStoresProducts = [];
+    await Promise.all(
+      marketStores.map(async (store) => {
+        const productStore = new ethers.Contract(
+          store.storeAddress,
+          StoreContract.abi,
+          signer
+        );
+        const _storeProducts = await productStore.listStoreProducts();
+
+        _storeProducts.map((p) => {
+          const imgUrl = p[3].replace(
+            "ipfs://",
+            "https://gateway.pinata.cloud/ipfs/"
+          );
+          let item = {
+            store: store.storeAddress,
+            productId: Number(p[0]),
+            name: p[1],
+            image: imgUrl,
+            price: utils.formatUnits(p[4].toString(), "ether"),
+            date: Number(p[8]),
+          };
+          _allStoresProducts.push(item);
+        });
+      })
+    );
+
+    const _allProducts = _marketProducts
+      .concat(_allStoresProducts)
+      .sort(function (a, b) {
+        return b.date - a.date;
+      });
+    setAllProducts(_allProducts);
   }
 
+  function findProduct() {
+    if (search !== "") {
+      setLoading(true);
+      const foundProducts = allProducts.filter((p) =>
+        p.name.toLowerCase().includes(search)
+      );
+      setAllProducts(foundProducts);
+      setLoading(false);
+    }
+  }
+
+  // ganache network is used for testing purposes
+  const currentNetwork = networks["1337"];
+  const isGoodNet = data.network === currentNetwork;
+  const isConnected = data.account !== "";
+
   useEffect(() => {
-    productDetails(Number(id));
-  }, [data.account, data.network]);
+    loadProducts();
+  }, [search]);
 
   return (
     <>
-      <div className="row p-2">
-        <div className="col-md-7 text-center p-3">
-          <div className="p-3">
-            {Number(productState.buy_price_in_ETH) === 0 ? (
-              <div>
-                Sale of <b>{productState.name}</b> for{" "}
-                <b>{parseFloat(productState.price_eth).toFixed(4)} ETH</b>
-              </div>
-            ) : (
-              <div>
-                <b>{productState.name}</b> bought for{" "}
-                <b>
-                  {parseFloat(productState.buy_price_in_ETH).toFixed(4)} ETH
-                </b>
-              </div>
-            )}
-
-            <div>{productState.description}</div>
-            <br />
-            <img
-              className="rounded"
-              src={productState.image}
-              height="350px"
-              width="560px"
-            />
-            <br />
-            <br />
-            {data.account === productState.seller ? (
-              productState.status === "IN SALE" ? (
-                <p>Your product is in sale</p>
-              ) : productState.status === "PENDING" ? (
+      <div className={classes.Container}>
+        {isConnected ? (
+          isGoodNet ? (
+            <>
+              <Form className="d-flex">
+                <FormControl
+                  type="search"
+                  placeholder="Search for a product"
+                  className="me-2"
+                  aria-label="Search"
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                />
                 <Button
-                  variant="primary"
+                  variant="outline-info"
                   onClick={() => {
-                    send(id);
+                    findProduct();
                   }}
                 >
                   {loading ? (
                     <CircularProgress size={26} color="#fff" />
                   ) : (
-                    "SEND"
+                    "Search"
                   )}
                 </Button>
-              ) : productState.status === "SENT" ? (
-                <p>waiting for confirmation from buyer</p>
-              ) : (
-                <p>Your product has been sold</p>
-              )
-            ) : productState.status === "IN SALE" ? (
-              <Button
-                variant="primary"
-                onClick={() => {
-                  purchase(id);
-                }}
-              >
-                {loading ? <CircularProgress size={26} color="#fff" /> : "Buy"}
-              </Button>
-            ) : productState.status === "PENDING" ? (
-              <>
-                <p>waiting for seller to send product</p>
-                <Button
-                  variant="primary"
-                  onClick={() => {
-                    cancel(id);
-                  }}
-                >
-                  {loading ? (
-                    <CircularProgress size={26} color="#fff" />
-                  ) : (
-                    "Cancel"
-                  )}
-                </Button>
-              </>
-            ) : productState.status === "SENT" ? (
-              <Button
-                variant="primary"
-                onClick={() => {
-                  confirm(id);
-                }}
-              >
-                {loading ? (
-                  <CircularProgress size={26} color="#fff" />
-                ) : (
-                  "Confirm"
-                )}
-              </Button>
-            ) : (
-              <p>Your have purchased this product</p>
-            )}
-          </div>
-        </div>
-        <div className="col-md-5 p-3">
-          <h3 className="text-center p-2">Product Details</h3>
-          <Table responsive>
-            <tbody>
-              <tr>
-                <td className="p-2">Seller</td>
-                <td>
-                  {data.account === productState.seller
-                    ? "you are the seller"
-                    : productState.seller}
-                </td>
-              </tr>
-
-              <tr>
-                <td className="p-2">Product Status</td>
-                <td>{productState.status}</td>
-              </tr>
-
-              <tr>
-                <td className="p-2">Price in USD</td>
-                <td>{productState.price} $</td>
-              </tr>
-
-              {Number(productState.buy_price_in_ETH) === 0 ? (
-                <tr>
-                  <td className="p-2">Price in ETH</td>
-                  <td>{parseFloat(productState.price_eth).toFixed(5)}</td>
-                </tr>
-              ) : (
-                <tr>
-                  <td className="p-2">Buy Price</td>
-                  <td>
-                    {parseFloat(productState.buy_price_in_ETH).toFixed(5)} ETH
-                  </td>
-                </tr>
-              )}
-              <tr>
-                <td className="p-2">Buyer</td>
-                <td>
-                  {data.account === productState.buyer
-                    ? "You are the buyer"
-                    : productState.buyer === ethers.constants.AddressZero
-                    ? "No buyer yet"
-                    : productState.buyer}
-                </td>
-              </tr>
-            </tbody>
-          </Table>
-        </div>
+              </Form>
+              <Container>
+                <Row className="mt-5">
+                  {allProducts.map((product, id) => {
+                    return (
+                      <Col style={{ marginBottom: "40px" }} md={3} key={id}>
+                        <Card style={{ width: "16rem" }} key={id}>
+                          <Card.Img
+                            variant="top"
+                            src={product.image}
+                            width="0px"
+                            height="180px"
+                          />
+                          <Card.Body>
+                            <Card.Title style={{ fontSize: "14px" }}>
+                              {product.name}
+                            </Card.Title>
+                            <Card.Text>
+                              <Card.Text>{product.price} $</Card.Text>
+                            </Card.Text>
+                            {product.store !== undefined ? (
+                              <a
+                                className="btn btn-primary"
+                                href={
+                                  "/store-product/" +
+                                  product.store +
+                                  "/" +
+                                  product.productId
+                                }
+                                role="button"
+                              >
+                                See More
+                              </a>
+                            ) : (
+                              <a
+                                className="btn btn-primary"
+                                href={"/products/" + product.productId}
+                                role="button"
+                              >
+                                See More
+                              </a>
+                            )}
+                          </Card.Body>
+                        </Card>
+                      </Col>
+                    );
+                  })}
+                </Row>
+              </Container>
+            </>
+          ) : (
+            <div className={classes.Container}>
+              You are on the wrong network switch to {currentNetwork} network
+            </div>
+          )
+        ) : null}
       </div>
     </>
   );
 }
 
-export default ProductPage;
+export default MarketPage;
