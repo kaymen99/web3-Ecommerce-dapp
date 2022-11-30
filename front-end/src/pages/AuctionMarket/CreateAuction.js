@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 function CreateAuction() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const data = useSelector((state) => state.blockchain.value);
 
   const [image, setImage] = useState({
     name: "",
@@ -39,8 +40,6 @@ function CreateAuction() {
   });
 
   const [loading, setLoading] = useState(false);
-
-  const data = useSelector((state) => state.blockchain.value);
 
   const classes = useStyles();
 
@@ -89,9 +88,9 @@ function CreateAuction() {
           type: "application/json",
         });
 
-        const files = new File([blob], "auction.json");
+        const file = new File([blob], "auction.json");
 
-        const dataCid = await ipfsSaveContent(files);
+        const dataCid = await ipfsSaveContent(file);
         const descriptionURI = `ipfs://${dataCid}/auction.json`;
 
         const duration = formInput.duration * 3600;
@@ -104,7 +103,7 @@ function CreateAuction() {
         await add_tx.wait();
 
         setLoading(false);
-        setImage(null);
+        setImage({ name: "", file: null });
         setFormInput({ name: "", description: "", price: 0, duration: 0 });
 
         navigate("/");
@@ -197,12 +196,12 @@ function CreateAuction() {
                   }}
                 />
                 <br />
-                {image.name && (
+                {image.file && (
                   <div className={classes.Container}>
                     <img
                       className="rounded mt-4"
                       width="350"
-                      src={URL.createObjectURL(image.name)}
+                      src={URL.createObjectURL(image.file)}
                     />
                   </div>
                 )}
@@ -215,7 +214,7 @@ function CreateAuction() {
                   onClick={createNewAuction}
                 >
                   {loading ? (
-                    <CircularProgress size={26} color="#fff" />
+                    <CircularProgress size={22} color="#fff" />
                   ) : (
                     "Add"
                   )}
