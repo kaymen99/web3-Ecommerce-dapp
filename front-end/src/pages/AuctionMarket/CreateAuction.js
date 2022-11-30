@@ -89,7 +89,7 @@ function CreateAuction() {
           type: "application/json",
         });
 
-        const files = [new File([blob], "auction.json")];
+        const files = new File([blob], "auction.json");
 
         const dataCid = await ipfsSaveContent(files);
         const descriptionURI = `ipfs://${dataCid}/auction.json`;
