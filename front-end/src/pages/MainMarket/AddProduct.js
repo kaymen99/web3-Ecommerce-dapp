@@ -61,7 +61,7 @@ function AddProduct() {
   };
 
   const addProduct = async () => {
-    if (image !== undefined) {
+    if (image.file !== undefined) {
       try {
         setLoading(true);
 
