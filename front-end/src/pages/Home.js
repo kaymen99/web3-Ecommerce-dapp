@@ -52,13 +52,13 @@ function Home() {
         openAuctions.map(async (auction) => {
           const metadataUrl = auction[2].replace(
             "ipfs://",
-            "https://gateway.pinata.cloud/ipfs/"
+            "https://ipfs.io/ipfs/"
           );
           let itemMetaData = await axios.get(metadataUrl);
 
           const imgUrl = itemMetaData.data.image.replace(
             "ipfs://",
-            "https://gateway.pinata.cloud/ipfs/"
+            "https://ipfs.io/ipfs/"
           );
 
           let item = {
@@ -71,7 +71,6 @@ function Home() {
         })
       );
       setAuctions(items.reverse());
-      console.log(items.reverse());
     }
   }
 
@@ -87,10 +86,7 @@ function Home() {
     const inSaleProducts = products.filter((p) => p[8] === 1);
 
     const _marketProducts = inSaleProducts.map((p) => {
-      const imgUrl = p[4].replace(
-        "ipfs://",
-        "https://gateway.pinata.cloud/ipfs/"
-      );
+      const imgUrl = p[4].replace("ipfs://", "https://ipfs.io/ipfs/");
       let item = {
         productId: Number(p[0]),
         name: p[2],
@@ -119,10 +115,7 @@ function Home() {
         const _storeProducts = await productStore.listStoreProducts();
 
         _storeProducts.map((p) => {
-          const imgUrl = p[3].replace(
-            "ipfs://",
-            "https://gateway.pinata.cloud/ipfs/"
-          );
+          const imgUrl = p[3].replace("ipfs://", "https://ipfs.io/ipfs/");
           let item = {
             store: store.storeAddress,
             productId: Number(p[0]),
@@ -154,12 +147,12 @@ function Home() {
           const storeDetailsURL = await productStore.callStatic.storeMetaData();
           const metadataUrl = storeDetailsURL.replace(
             "ipfs://",
-            "https://gateway.pinata.cloud/ipfs/"
+            "https://ipfs.io/ipfs/"
           );
           let meta = await axios.get(metadataUrl);
           const imgUrl = meta.data.image.replace(
             "ipfs://",
-            "https://gateway.pinata.cloud/ipfs/"
+            "https://ipfs.io/ipfs/"
           );
           let item = {
             address: store.storeAddress,
@@ -170,7 +163,6 @@ function Home() {
         })
       );
       setAllStores(allStores);
-      console.log(allStores);
     }
   }
 
