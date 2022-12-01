@@ -2,6 +2,8 @@ import { Web3Storage } from "web3.storage";
 
 const web3storage_key = "YOUR-WEB3.STORAGE-API-TOKEN";
 
+export const IPFS_GATEWAY = "https://ipfs.io/ipfs/";
+
 function GetAccessToken() {
   return web3storage_key;
 }
