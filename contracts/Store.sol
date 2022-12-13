@@ -18,6 +18,8 @@ contract Store {
     StoreProduct[] public storeProducts;
     ProductOrder[] public storeOrders;
     mapping(uint256 => ProductReview[]) productsReviewMapping;
+    
+    uint256 constant private FEE = 3; // fee = 0.3%
 
     enum Type {
         FIXED,
@@ -190,8 +192,8 @@ contract Store {
         );
 
         uint256 totalAmount = order.orderTotalBuyPriceInETH;
-        uint256 priceMinusFee = (totalAmount * 997) / 1000;
-        uint256 fee = (totalAmount * 3) / 1000;
+        uint256 fee = (totalAmount * FEE) / 1000;
+        uint256 priceMinusFee = totalAmount - fee;
 
         order.orderStatus = Status.COMPLETED;
         storeOrders[_orderId] = order;
