@@ -18,6 +18,9 @@ contract Store {
     StoreProduct[] public storeProducts;
     ProductOrder[] public storeOrders;
     mapping(uint256 => ProductReview[]) productsReviewMapping;
+    //shipping address mappings
+    mapping(uint256 => address) public addressMapping;
+
     
     uint256 constant private FEE = 3; // fee = 0.3%
 
@@ -158,13 +161,24 @@ contract Store {
                 Status.PENDING
             );
             storeOrders.push(order);
+            // Store address in mapping
+            addressMapping[orderIds] = msg.sender;
+
         }
 
         product.activeOrders++;
         storeProducts[_productId] = product;
 
         orderIds++;
-    }
+            }
+
+
+ function getOrderAddress(uint256 _orderId) public view returns (address) {
+    require(_orderId < orderIds, "wrong order id");
+    return addressMapping[_orderId];
+ }
+
+
 
     function fillOrder(uint256 _orderId) public onlyOwner {
         require(_orderId < orderIds, "wrong order id");
@@ -251,9 +265,31 @@ contract Store {
         return storeProducts;
     }
 
-    function listStoreOrders() public view returns (ProductOrder[] memory) {
+   function listStoreOrders() public view returns (ProductOrder[] memory) {
+    if (msg.sender == owner) {
         return storeOrders;
+    } else {
+        uint256 buyerOrderCount = 0;
+        for (uint256 i = 0; i < storeOrders.length; i++) {
+            if (addressMapping[storeOrders[i].orderId] == msg.sender) {
+                buyerOrderCount++;
+            }
+        }
+
+        ProductOrder[] memory buyerOrders = new ProductOrder[](buyerOrderCount);
+
+        uint256 j = 0;
+        for (uint256 i = 0; i < storeOrders.length; i++) {
+            if (addressMapping[storeOrders[i].orderId] == msg.sender) {
+                buyerOrders[j] = storeOrders[i];
+                j++;
+            }
+        }
+
+        return buyerOrders;
     }
+}
+
 
     function listProductReviews(uint256 _productId)
         public

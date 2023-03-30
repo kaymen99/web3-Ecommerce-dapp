@@ -21,7 +21,10 @@ function OrderPage() {
 
   const data = useSelector((state) => state.blockchain.value);
 
-  const [formInput, setFormInput] = useState({ rating: "", review: "" });
+  const [formInput, setFormInput] = useState({
+    rating: "",
+    review: "",
+  });
   const [orderState, setOrderState] = useState({
     seller: "",
     name: "",
@@ -34,6 +37,7 @@ function OrderPage() {
     has_been_reviewed: false,
     order_status: orderStatus[0],
   });
+  const [address, setAddress] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
@@ -97,7 +101,10 @@ function OrderPage() {
           signer
         );
 
-        const fill_tx = await productStore.fillOrder(Number(order_id));
+        const fill_tx = await productStore.fillOrder(
+          Number(order_id),
+          address // use user's inputted address
+        );
         await fill_tx.wait();
 
         setLoading(false);
@@ -214,6 +221,14 @@ function OrderPage() {
             />
             <br />
             <br />
+
+            <label>Delivery Address:</label>
+            <input
+              type="text"
+              placeholder="Enter delivery address here"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
 
             {data.account === orderState.seller ? (
               orderState.order_status === "PENDING" ? (
