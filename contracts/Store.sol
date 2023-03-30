@@ -18,6 +18,7 @@ contract Store {
     StoreProduct[] public storeProducts;
     ProductOrder[] public storeOrders;
     mapping(uint256 => ProductReview[]) productsReviewMapping;
+    //shipping address mappings
     mapping(uint256 => address) public addressMapping;
 
     
