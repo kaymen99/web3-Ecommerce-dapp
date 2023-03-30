@@ -224,6 +224,10 @@ function MyStore() {
               product_id
             );
 
+            const shippingAddress = await productStore.getOrderAddress(
+              order[0]
+            );
+
             let item = {
               orderId: Number(order[0]),
               productId: product_id,
@@ -232,6 +236,7 @@ function MyStore() {
               quantity: Number(order[3]),
               TotalbuyPrice: utils.formatUnits(order[4], "ether"),
               status: orderStatus[order[6]],
+              shippingAddress: shippingAddress,
             };
             return item;
           })
@@ -364,6 +369,7 @@ function MyStore() {
                       </Row>
                     </Container>
                   </TabPanel>
+                
                   <TabPanel value="orders">
                     <Container>
                       {storeOrders.length !== 0 ? (
@@ -373,6 +379,8 @@ function MyStore() {
                               <th>#</th>
                               <th>product</th>
                               <th>buyer</th>
+                              <th>shipping address</th> // added column for
+                              shipping address
                               <th>quantity</th>
                               <th>Total price ETH</th>
                               <th>status</th>
@@ -399,6 +407,8 @@ function MyStore() {
                                   </td>
                                   <td>{order.productName}</td>
                                   <td>{order.buyer}</td>
+                                  <td>{order.shippingAddress}</td> // show
+                                  shipping address
                                   {order.quantity !== 0 ? (
                                     <td>{order.quantity}</td>
                                   ) : (
@@ -408,7 +418,6 @@ function MyStore() {
                                     {parseFloat(order.TotalbuyPrice).toFixed(5)}
                                   </td>
                                   <td>{order.status}</td>
-
                                   {order.status === "PENDING" ? (
                                     <td key={index}>
                                       <Button
