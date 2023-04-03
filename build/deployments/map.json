@@ -1,19 +1,19 @@
 {
   "5777": {
     "Administration": [
-      "0xdCFd902Fd44565edCb6E781B34831EC05c7c6a31"
+      "0x8C92637d23269e525BE9502b6771Fc4D49C7632b"
     ],
     "AuctionMarket": [
-      "0x28d4476D1214084988B7BB95ff43696E06826D55"
+      "0x8c09e6125b331A7ef6992Dee354AEeddfe6a2103"
     ],
     "Market": [
-      "0x999b277DB46982f0a978eCd4ED5B40B36AaF5a33"
+      "0xf239739EF9351F945F19D923D2040983ae3594Dc"
     ],
     "MockV3Aggregator": [
-      "0xCf86C62f162ec1e490a84482dDD7c983aEDFD159"
+      "0x970B26B1ab26d89815E4B4e62cba99ac495170ee"
     ],
     "StoreFactory": [
-      "0x46bf6B4F769A4E2097F276AA3b8738AAb22a99e1"
+      "0xF500CeDeb6e60adCE7CAb3594AA1D8A48312A457"
     ]
   }
 }

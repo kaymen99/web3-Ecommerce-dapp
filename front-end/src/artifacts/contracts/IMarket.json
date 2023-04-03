@@ -15,24 +15,24 @@
     }
   ],
   "allSourcePaths": {
-    "3": "contracts/IMarket.sol"
+    "4": "contracts/IMarket.sol"
   },
   "ast": {
     "absolutePath": "contracts/IMarket.sol",
     "exportedSymbols": {
       "IMarket": [
-        222
+        694
       ],
       "IStoreFactory": [
-        216
+        688
       ]
     },
-    "id": 223,
+    "id": 695,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 210,
+        "id": 682,
         "literals": [
           "solidity",
           "^",
@@ -40,7 +40,7 @@
           ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "33:23:3"
+        "src": "33:23:4"
       },
       {
         "abstract": false,
@@ -49,36 +49,36 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 216,
+        "id": 688,
         "linearizedBaseContracts": [
-          216
+          688
         ],
         "name": "IStoreFactory",
-        "nameLocation": "68:13:3",
+        "nameLocation": "68:13:4",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "e09b858d",
-            "id": 215,
+            "id": 687,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "changeCreateStoreFee",
-            "nameLocation": "97:20:3",
+            "nameLocation": "97:20:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 213,
+              "id": 685,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 212,
+                  "id": 684,
                   "mutability": "mutable",
                   "name": "_newFee",
-                  "nameLocation": "126:7:3",
+                  "nameLocation": "126:7:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 215,
-                  "src": "118:15:3",
+                  "scope": 687,
+                  "src": "118:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -86,10 +86,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 211,
+                    "id": 683,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "118:7:3",
+                    "src": "118:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -98,23 +98,23 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "117:17:3"
+              "src": "117:17:4"
             },
             "returnParameters": {
-              "id": 214,
+              "id": 686,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "143:0:3"
+              "src": "143:0:4"
             },
-            "scope": 216,
-            "src": "88:56:3",
+            "scope": 688,
+            "src": "88:56:4",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 223,
-        "src": "58:88:3",
+        "scope": 695,
+        "src": "58:88:4",
         "usedErrors": []
       },
       {
@@ -124,36 +124,36 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 222,
+        "id": 694,
         "linearizedBaseContracts": [
-          222
+          694
         ],
         "name": "IMarket",
-        "nameLocation": "158:7:3",
+        "nameLocation": "158:7:4",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "6a1db1bf",
-            "id": 221,
+            "id": 693,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "changeFee",
-            "nameLocation": "181:9:3",
+            "nameLocation": "181:9:4",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 219,
+              "id": 691,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 218,
+                  "id": 690,
                   "mutability": "mutable",
                   "name": "_newFee",
-                  "nameLocation": "199:7:3",
+                  "nameLocation": "199:7:4",
                   "nodeType": "VariableDeclaration",
-                  "scope": 221,
-                  "src": "191:15:3",
+                  "scope": 693,
+                  "src": "191:15:4",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -161,10 +161,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 217,
+                    "id": 689,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "191:7:3",
+                    "src": "191:7:4",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -173,27 +173,27 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "190:17:3"
+              "src": "190:17:4"
             },
             "returnParameters": {
-              "id": 220,
+              "id": 692,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "216:0:3"
+              "src": "216:0:4"
             },
-            "scope": 222,
-            "src": "172:45:3",
+            "scope": 694,
+            "src": "172:45:4",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 223,
-        "src": "148:71:3",
+        "scope": 695,
+        "src": "148:71:4",
         "usedErrors": []
       }
     ],
-    "src": "33:187:3"
+    "src": "33:187:4"
   },
   "bytecode": "",
   "bytecodeSha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709",
@@ -203,7 +203,7 @@
       "enabled": true,
       "runs": 200
     },
-    "version": "0.8.9+commit.e5eed63a"
+    "version": "0.8.19+commit.7dd6d404"
   },
   "contractName": "IMarket",
   "coverageMap": {

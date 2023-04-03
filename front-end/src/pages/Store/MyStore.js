@@ -369,7 +369,7 @@ function MyStore() {
                       </Row>
                     </Container>
                   </TabPanel>
-                
+
                   <TabPanel value="orders">
                     <Container>
                       {storeOrders.length !== 0 ? (

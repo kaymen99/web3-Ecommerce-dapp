@@ -32,7 +32,10 @@ contract Market {
         address payable buyer;
         Status status;
         uint256 listed_on;
+        
     }
+
+    mapping(uint256 => mapping(address => string)) public shippingAddresses;
 
     //--------------------------------------------------------------------
     // EVENTS
@@ -95,9 +98,8 @@ contract Market {
         );
     }
 
-    function purchase(uint256 _id) public payable {
+     function purchase(uint256 _id, string memory _shippingAddress) public payable {
         Product memory product = products[_id];
-
         require(
             msg.sender != product.seller && product.status == Status.INSALE,
             "Invalid purchase"
@@ -110,7 +112,19 @@ contract Market {
         product.buyPriceInETH = priceInETH;
         product.status = Status.PENDING;
         products[_id] = product;
+
+        shippingAddresses[_id][msg.sender] = _shippingAddress;
     }
+
+    function getShippingAddress(uint256 _productId) public view returns (string memory) {
+        require(
+            msg.sender == products[_productId].buyer || msg.sender == products[_productId].seller,
+            "Only the buyer or the seller can view the shipping address."
+        );
+
+        return shippingAddresses[_productId][msg.sender];
+    }
+
 
     function sendProduct(uint256 _id)
         public

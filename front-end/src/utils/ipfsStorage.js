@@ -1,6 +1,7 @@
 import { Web3Storage } from "web3.storage";
 
-const web3storage_key = "YOUR-WEB3.STORAGE-API-TOKEN";
+const web3storage_key =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDU2RDlDMjUwNjMxMjI4Q0ZCNjhjOTYxODlBRmIzYTlhQUQ5NmY0NDAiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2ODAxMTEzNTc3NTYsIm5hbWUiOiJNYXJrZXRwbGFjZSJ9.URg3-GOYjNNWDNtEBcZd0Q1M2INhszJTgLI7evz30Ks";
 
 export const IPFS_GATEWAY = "https://ipfs.io/ipfs/";
 

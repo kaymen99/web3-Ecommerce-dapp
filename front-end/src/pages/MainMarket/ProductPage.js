@@ -31,6 +31,7 @@ function ProductPage() {
     buy_price_in_ETH: 0,
     buyer: "",
     status: "",
+    shippingAddress: "",
   });
 
   const [loading, setLoading] = useState(false);
@@ -83,7 +84,7 @@ function ProductPage() {
           signer
         );
 
-        const purchase_tx = await market.purchase(product_id, {
+        const purchase_tx = await market.purchase(product_id, shippingAddress, {
           value: utils.parseEther(price_in_eth, "ether"),
         });
         await purchase_tx.wait();
@@ -233,14 +234,32 @@ function ProductPage() {
                 <p>Your product has been sold</p>
               )
             ) : productState.status === "IN SALE" ? (
-              <Button
-                variant="primary"
-                onClick={() => {
-                  purchase(id);
-                }}
-              >
-                {loading ? <CircularProgress size={26} color="#fff" /> : "Buy"}
-              </Button>
+              <>
+                <Form.Control
+                  type="text"
+                  placeholder="Enter shipping address"
+                  value={productState.shippingAddress}
+                  onChange={(e) =>
+                    setProductState({
+                      ...productState,
+                      shippingAddress: e.target.value,
+                    })
+                  }
+                />
+                <br />
+                <Button
+                  variant="primary"
+                  onClick={() => {
+                    purchase(id, productState.shippingAddress);
+                  }}
+                >
+                  {loading ? (
+                    <CircularProgress size={26} color="#fff" />
+                  ) : (
+                    "BUY"
+                  )}
+                </Button>
+              </>
             ) : productState.status === "PENDING" ? (
               <>
                 <p>waiting for seller to send product</p>
@@ -321,6 +340,13 @@ function ProductPage() {
                     : productState.buyer}
                 </td>
               </tr>
+              {(data.account === productState.buyer ||
+                data.account === productState.seller) && (
+                <tr>
+                  <td className="p-2">Shipping Address</td>
+                  <td>{productState.shippingAddress[data.account]}</td>
+                </tr>
+              )}
             </tbody>
           </Table>
         </div>

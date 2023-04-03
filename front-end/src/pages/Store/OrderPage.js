@@ -36,8 +36,8 @@ function OrderPage() {
     has_quantity: true,
     has_been_reviewed: false,
     order_status: orderStatus[0],
+    shippingAddress: "",
   });
-  const [address, setAddress] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
@@ -61,6 +61,9 @@ function OrderPage() {
         provider
       );
       const storeOwner = await productStore.callStatic.owner();
+      const shippingAddress = await StoreContract.methods
+        .getOrderAddress(order_id)
+        .call();
 
       const product_orders = await productStore.listStoreOrders();
 
@@ -85,6 +88,7 @@ function OrderPage() {
           order_quantity: Number(order[3]),
           has_been_reviewed: order[5],
           order_status: orderStatus[order[6]],
+          shippingAddress,
         });
       }
     }
@@ -101,10 +105,7 @@ function OrderPage() {
           signer
         );
 
-        const fill_tx = await productStore.fillOrder(
-          Number(order_id),
-          address // use user's inputted address
-        );
+        const fill_tx = await productStore.fillOrder(Number(order_id));
         await fill_tx.wait();
 
         setLoading(false);
@@ -222,14 +223,6 @@ function OrderPage() {
             <br />
             <br />
 
-            <label>Delivery Address:</label>
-            <input
-              type="text"
-              placeholder="Enter delivery address here"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-            />
-
             {data.account === orderState.seller ? (
               orderState.order_status === "PENDING" ? (
                 <Button
@@ -317,6 +310,12 @@ function OrderPage() {
                 <td className="p-2">Order Status</td>
                 <td>{orderState.order_status}</td>
               </tr>
+              {orderState.shippingAddress && (
+                <tr>
+                  <td className="p-2">Shipping Address</td>
+                  <td>{orderState.shippingAddress}</td>
+                </tr>
+              )}
             </tbody>
           </Table>
 

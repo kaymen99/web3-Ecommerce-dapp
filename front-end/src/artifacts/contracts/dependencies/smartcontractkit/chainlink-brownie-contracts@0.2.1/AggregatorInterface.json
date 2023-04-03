@@ -129,10 +129,10 @@
     }
   ],
   "allSourcePaths": {
-    "0": "/Users/k.aymen/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.1/contracts/src/v0.6/interfaces/AggregatorInterface.sol"
+    "0": "/Users/dilshodshoolimkhonov/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.1/contracts/src/v0.6/interfaces/AggregatorInterface.sol"
   },
   "ast": {
-    "absolutePath": "/Users/k.aymen/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.1/contracts/src/v0.6/interfaces/AggregatorInterface.sol",
+    "absolutePath": "/Users/dilshodshoolimkhonov/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.1/contracts/src/v0.6/interfaces/AggregatorInterface.sol",
     "exportedSymbols": {
       "AggregatorInterface": [
         262
@@ -760,6 +760,6 @@
   "sha1": "f3cb936fc74be370bdd3ef9ecd4f4c9ea8cb4aae",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.6.0;\n\ninterface AggregatorInterface {\n  function latestAnswer()\n    external\n    view\n    returns (\n      int256\n    );\n  \n  function latestTimestamp()\n    external\n    view\n    returns (\n      uint256\n    );\n\n  function latestRound()\n    external\n    view\n    returns (\n      uint256\n    );\n\n  function getAnswer(\n    uint256 roundId\n  )\n    external\n    view\n    returns (\n      int256\n    );\n\n  function getTimestamp(\n    uint256 roundId\n  )\n    external\n    view\n    returns (\n      uint256\n    );\n\n  event AnswerUpdated(\n    int256 indexed current,\n    uint256 indexed roundId,\n    uint256 updatedAt\n  );\n\n  event NewRound(\n    uint256 indexed roundId,\n    address indexed startedBy,\n    uint256 startedAt\n  );\n}\n",
   "sourceMap": "",
-  "sourcePath": "/Users/k.aymen/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.1/contracts/src/v0.6/interfaces/AggregatorInterface.sol",
+  "sourcePath": "/Users/dilshodshoolimkhonov/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.1/contracts/src/v0.6/interfaces/AggregatorInterface.sol",
   "type": "interface"
 }
