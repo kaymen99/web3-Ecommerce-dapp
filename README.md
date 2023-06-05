@@ -8,8 +8,7 @@
   <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161353432-f63bd35b-14f6-4f49-8b53-a19599272af8.png" width="100%">
 </p>
 
-
-This is my second implementation of a decentralized marketplace built on top of EVM compatible Blockchains (Ethereum, Polygon,...), The first dapp allowed users to only buy and sell single items (without quantity). But this one is much more developed and have a lot of features, It enables the user to create it's own store with a costumized brand and to sell products with limited/unlimited quantity, it gives buyers the possibility to review the bought products. I also introduced an Auction market just like all the NFT marketplaces (OpenSea,...) however it's more generalized and accept all variety of products. 
+This is my second implementation of a decentralized E-commerce marketplace built on top of EVM-compatible Blockchains such as Ethereum and Polygon. The previous dapp only allowed users to buy and sell single items without quantity. However, this new version is much more advanced and includes a wide range of features. Users can now create their own stores with customized branding and sell products with limited or unlimited quantities. Additionally, buyers have the ability to review the products they purchase. I have also introduced an Auction market, inspired by popular NFT marketplaces like OpenSea, however my implementation is more generalized and accepts a variety of products. It's important to note that all payments within the marketplace remain with cryptocurrency tokens.
 
 <p align="center">
   <img alt="Dark" src="https://user-images.githubusercontent.com/83681204/161353476-c84cc1b8-dce9-4d02-afd6-e4b24d325528.png" width="100%">
